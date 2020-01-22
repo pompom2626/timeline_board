@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Image from 'react-image-resizer';
+import Image from 'react-image-resizer'; //resize img is not working 
+import Users from './Users';
 
 //increas do list items
 let dolistId = 0;
@@ -45,7 +46,7 @@ class App extends Component {
       name: docontents,
       completedDecision: true,
       date: new Date(),
-      /*  user: this.userNames[0] */
+
     }
     const newdoitList = doitList.map((doitList) => {
       return doitList
@@ -103,7 +104,9 @@ class App extends Component {
         <div className='row'>
           <div className='col text-center'>
             <div className='input-group'>
-
+            <div style={{backgroundColor :'blue', color :'white', width :'100%'}}>
+              Timeline Message Board
+            </div>
               <input
                 type='text'
                 className='form-control'
@@ -148,40 +151,34 @@ class App extends Component {
 
           <div /* className='col-6' */ >
             <h3> </h3>
-           
+
             {
-              
+
               this.state.doitList.filter(item => item.completedDecision).map(item =>
-                   
-              /*   this.state.userList.map(item2 => */
-                       <React.Fragment> 
-                <div /* key={item2.id} */ style={{float:'left'}}>
-                <img
-                src={`https://loremflickr.com/70/70?random=1`}
-               /* height={10}
-               width={10} */  alt="users" />
-               </div>
-                {/*   ) */}
-                 
-                <div key={item.id} style={{ margin: 10 }} >
-                  <p style={{ marginRight: 5, whiteSpace: "pre-wrap" }}>-{item.date.toLocaleDateString('en-US')} {item.date.toLocaleTimeString('en-US')} {"\n"} {item.name} </p>
-                  {CancelButton(item)}
-                </div>
+
+                /*   this.state.userList.map(item2 => */
+                <React.Fragment>
+                  <Users userList={this.state.userList} userNames={this.state.userNames} />
+
+                  <div key={item.id} style={{ margin: 10 }} >
+                    <p style={{ marginRight: 5, whiteSpace: "pre-wrap" }}>-{item.date.toLocaleDateString('en-US')} {item.date.toLocaleTimeString('en-US')} {"\n"} {item.name} </p>
+                    {CancelButton(item)}
+                  </div>
                 </React.Fragment>
               )
-              
+
             }
-            
+
           </div>
-          
+
         </div>
-        
+
         <div className='col-6'>
           <h3>Users</h3>
           <select onChange={this.onchangeUserNames}>
             <option>Choose</option>
             {
-              this.state.userList/* .filter(item => !item.completedDecision) */.map(item =>
+              this.state.userList.map(item =>
                 <option key={item.id} style={{ margin: 10, marginRight: 5 }}>
                   -{item.name} {"\n"} {/* {item.image} */}</option>
 
@@ -194,7 +191,7 @@ class App extends Component {
 
     );
   }
-  
+
 }
 
 export default App;
