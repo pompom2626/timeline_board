@@ -150,32 +150,24 @@ class App extends Component {
             <h3> </h3>
            
             {
-              
               this.state.doitList.filter(item => item.completedDecision).map(item =>
-                   
-              /*   this.state.userList.map(item2 => */
-                       <React.Fragment> 
-                <div /* key={item2.id} */ style={{float:'left'}}>
+                <React.Fragment>
+                <div style={{float:'left'}}>
                 <img
-                src={`https://loremflickr.com/70/70?random=1`}
+                src={`https://loremflickr.com/70/70?random=${this.userList.id}`}
                /* height={10}
                width={10} */  alt="users" />
                </div>
-                {/*   ) */}
-                 
                 <div key={item.id} style={{ margin: 10 }} >
                   <p style={{ marginRight: 5, whiteSpace: "pre-wrap" }}>-{item.date.toLocaleDateString('en-US')} {item.date.toLocaleTimeString('en-US')} {"\n"} {item.name} </p>
                   {CancelButton(item)}
                 </div>
                 </React.Fragment>
               )
-              
+
             }
-            
           </div>
-          
         </div>
-        
         <div className='col-6'>
           <h3>Users</h3>
           <select onChange={this.onchangeUserNames}>
@@ -194,7 +186,6 @@ class App extends Component {
 
     );
   }
-  
 }
 
 export default App;

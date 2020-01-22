@@ -1,0 +1,71 @@
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+import { render } from '@testing-library/react';
+
+let dolistId = 0 ;
+
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      //make todolists array
+      doitList: [] ,
+      //todo contents store
+      doContents:''
+    }
+  }
+
+onclickAddList=()=>{
+  const{doitList, doContents } = this.state;
+  
+  if(doContents.length === 0 ){
+    return alert('Input your do-lists')
+  }
+  const doInputContent = {
+    id : dolistId++,
+    name : doContents,
+    completedDecision : false
+  }
+
+  const addDoitList = doitList.slice(0)
+  addDoitList.push(doInputContent)
+  
+  this.setState({doitList: addDoitList, doContents:''})
+}
+
+onChangeDoitList= (e)=>{
+  this.setState({doContents : e.target.value})
+}
+
+render(){
+  return (
+    <div className='container' style={{ maxWidth: 550, padding: '25px 0' }}>
+    <div className='row'>
+      <div className='col'>
+        <div className='input'>
+          <input
+            type='text'
+            className='formSetting'
+            placeholder='Input new to do things'
+            value={this.state.doContents}
+            onChange={this.onChangeDoitList}
+            onKeyDown={e => e.keyCode === 13 ? this.onclickAddList() : null}
+          />
+          <div className='add input'>
+            <button
+              className='btn inside'
+              onClick={this.onclickAddList}
+            >
+              registered
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  )
+}
+}
+
+export default App;
